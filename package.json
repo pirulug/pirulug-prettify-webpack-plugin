@@ -1,6 +1,6 @@
 {
-  "name": "@pirulug/beautify-html-webpack-plugin",
-  "version": "0.0.1",
+  "name": "pirulug-prettify-webpack-plugin",
+  "version": "0.0.3",
   "description": "A Webpack plugin to prettify HTML files using Prettier.",
   "main": "index.js",
   "scripts": {
