@@ -1,6 +1,6 @@
 {
-  "name": "@pirulug/prettify-webpack-plugin",
-  "version": "0.0.2",
+  "name": "@pirulug/beautify-html-webpack-plugin",
+  "version": "0.0.1",
   "description": "A Webpack plugin to prettify HTML files using Prettier.",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "html",
     "prettify"
   ],
-  "author": "Pirlug <pirulug@gmail.com>",
+  "author": "Pirlug",
   "license": "MIT",
   "dependencies": {
     "prettier": "^3.3.0",
