@@ -1,5 +1,6 @@
 const prettier = require("prettier");
-const { RawSource } = require("webpack-sources");
+const { sources } = require("webpack");
+const { Compilation } = require("webpack");
 
 class PrettierWebpackPlugin {
   constructor(options = {}) {
@@ -7,27 +8,31 @@ class PrettierWebpackPlugin {
   }
 
   apply(compiler) {
-    compiler.hooks.emit.tapAsync(
-      "PrettierWebpackPlugin",
-      async (compilation, callback) => {
-        const files = Object.keys(compilation.assets);
-        for (const filename of files) {
-          if (filename.endsWith(".html")) {
-            const asset = compilation.assets[filename];
-            let source = asset.source();
-            let formattedSource = await prettier.format(
-              source,
-              Object.assign(this.options, { parser: "html" })
-            );
-            if (typeof formattedSource !== "string") {
-              formattedSource = formattedSource.toString();
+    compiler.hooks.thisCompilation.tap("PrettierWebpackPlugin", (compilation) => {
+      compilation.hooks.processAssets.tapPromise(
+        {
+          name: "PrettierWebpackPlugin",
+          stage: Compilation.PROCESS_ASSETS_STAGE_OPTIMIZE,
+        },
+        async (assets) => {
+          const files = Object.keys(assets);
+          for (const filename of files) {
+            if (filename.endsWith(".html")) {
+              const asset = assets[filename];
+              let source = asset.source();
+              let formattedSource = await prettier.format(
+                source,
+                Object.assign(this.options, { parser: "html" })
+              );
+              if (typeof formattedSource !== "string") {
+                formattedSource = formattedSource.toString();
+              }
+              assets[filename] = new sources.RawSource(formattedSource);
             }
-            compilation.assets[filename] = new RawSource(formattedSource);
           }
         }
-        callback();
-      }
-    );
+      );
+    });
   }
 }
 
