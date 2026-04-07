@@ -60,7 +60,7 @@ This will run a Webpack build using the configuration in `tests/webpack.config.j
 | `extensions` | `string[]` | `[".html", ".css", ".js", ".json"]` | Array of file extensions to process. |
 | `include` | `string|RegExp|Array` | `undefined` | Patterns to include. |
 | `exclude` | `string|RegExp|Array` | `undefined` | Patterns to exclude from processing. |
-| `prettierOptions` | `Object` | `{}` | Direct options to pass to `prettier.format()`. |
+| `prettierOptions` | `Object` | `{ bracketSameLine: true, htmlWhitespaceSensitivity: "ignore" }` | Direct options to pass to `prettier.format()`. |
 | `resolveConfig` | `boolean` | `true` | Whether to automatically search for and load Prettier config files. |
 
 ### Advanced Example

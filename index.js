@@ -14,7 +14,11 @@ class PrettierWebpackPlugin {
     this.options = {
       extensions: [".html", ".css", ".js", ".json"],
       resolveConfig: true,
-      prettierOptions: {},
+      prettierOptions: {
+        bracketSameLine: true,
+        htmlWhitespaceSensitivity: "ignore",
+        ...options.prettierOptions,
+      },
       ...options,
     };
   }
