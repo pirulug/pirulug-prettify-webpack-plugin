@@ -76,6 +76,15 @@ new PrettierWebpackPlugin({
 })
 ```
 
+## Publishing
+
+To publish a new version to npm:
+
+```bash
+npm login
+npm publish
+```
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
